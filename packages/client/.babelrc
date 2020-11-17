@@ -1,0 +1,25 @@
+{
+  "plugins": [
+    "@babel/plugin-transform-modules-commonjs",
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    ["@babel/plugin-proposal-optional-chaining", {}, "chain"],
+    ["@babel/plugin-transform-runtime", { "regenerator": true }],
+    ["emotion"],
+
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": {
+          "src": "./src"
+        }
+      }
+    ]
+  ],
+  "presets": ["@babel/preset-env", "@babel/preset-react"]
+}

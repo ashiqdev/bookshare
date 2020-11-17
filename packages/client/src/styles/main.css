@@ -1,0 +1,133 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.signupbg {
+  background-image: url("../assets/images/singup-secure.svg");
+}
+
+.signinbg {
+  background-image: url("../assets/images/login.svg");
+}
+
+.successbg {
+  background-image: url("../assets/images/done.svg");
+}
+
+.forgetbg {
+  background-image: url("../assets/images/forget.svg");
+}
+
+.resetbg {
+  background-image: url("../assets/images/reset.svg");
+}
+
+.test {
+  background-color: red;
+}
+
+.menu {
+  width: 100%;
+}
+
+.menu-item {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: flex-start;
+  border-radius: 5px;
+  transition: background 500ms;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.menu-item:hover {
+  background-color: #e2e8f0;
+}
+
+.menu-item .icon-button {
+  margin-right: 0.5rem;
+}
+
+.menu-item .icon-button:hover {
+  filter: none;
+}
+
+.icon-right {
+  margin-left: auto;
+}
+
+/* CSSTransition classes  */
+.menu-primary-enter {
+  position: absolute;
+  transform: translateX(-6%);
+}
+.menu-primary-enter-active {
+  transform: translateX(0%);
+  transition: all 500ms ease;
+}
+.menu-primary-exit {
+  position: absolute;
+  opacity: 0;
+}
+.menu-primary-exit-active {
+  transform: translateX(0%);
+  transition: all 500ms ease;
+}
+
+.menu-secondary-enter {
+  transform: translateX(4%);
+}
+.menu-secondary-enter-active {
+  transform: translateX(0%);
+  transition: all 500ms ease;
+}
+.menu-secondary-exit {
+  opacity: 0;
+}
+.menu-secondary-exit-active {
+  transform: translateX(0%);
+  transition: all 500ms ease;
+}
+
+.Modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* width: 50%; */
+
+  background-color: white;
+  padding: 6rem;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  outline: none;
+}
+
+.delete_Modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  outline: none;
+}
+
+.Overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(3px);
+  z-index: 500;
+}
