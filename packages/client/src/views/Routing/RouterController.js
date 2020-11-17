@@ -17,17 +17,7 @@ import PublicRoutes from "./PublicRoutes";
 import ProfileModal from "../ProfileModal";
 import FormModal from "../FormModal";
 
-// const FetchPosts = async () => {
-//   const {
-//     data: { posts },
-//   } = await axios.get(`${process.env.API_URL}/api/posts`);
-
-//   return posts;
-// };
-
 const RouterController = () => {
-  // useQuery("posts", FetchPosts);
-
   const { dispatch, state } = useContext(store);
   useEffect(() => {
     // check for token in LS

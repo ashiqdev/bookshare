@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Redirect, useParams, useHistory } from "react-router-dom";
 import { useQuery, useMutation, queryCache } from "react-query";
 import moment from "moment";
@@ -62,12 +62,6 @@ const SinglePost = (props) => {
 
   const date = new Date(data?.createdAt);
 
-  console.log({ ps: status });
-
-  console.log({ imtiaj: data });
-
-  console.log({ imp: state });
-
   const [
     deleteMutate,
     { status: deleteStatus, error: deleteError, data: deleteRes },
@@ -83,6 +77,14 @@ const SinglePost = (props) => {
       },
     }
   );
+
+  useEffect(() => {
+    if (state.editForm || state.deleteForm) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [state.editForm, state.deleteForm]);
 
   return (
     <div className="flex flex-col container mx-auto mt-6 lg:mt-6 pt-64 sm:pt-32 bg-gray-300 overflow-hidden">
