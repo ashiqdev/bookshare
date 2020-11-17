@@ -49,11 +49,14 @@ const RouterController = () => {
 
     getUser();
 
-    document.body.style.overflow = "hidden";
-    return () => (document.body.style.overflow = "unset");
+    if (state.modal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
 
     // TODO log user out from all tabs if they log out in one tab
-  }, []);
+  }, [state.modal]);
 
   return (
     <Router>

@@ -24,24 +24,10 @@ const FetchCurrentUser = async () => {
   return user;
 };
 
-// const FetchPosts = async (key, option) => {
-//   console.log({ option });
-//   const {
-//     data: { posts },
-//   } = await axios.get(`${process.env.API_URL}/api/posts`, {
-//     params: {
-//       filter: option,
-//     },
-//   });
-
-//   return posts;
-// };
-
 const DashBoard = () => {
   const [criteria, setCriteria] = useState("");
 
   useQuery("user", FetchCurrentUser);
-  // const { data, status, refetch } = useQuery(["posts", criteria], FetchPosts);
 
   const FetchPosts = async (key) => {
     const {
