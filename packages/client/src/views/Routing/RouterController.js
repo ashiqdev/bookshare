@@ -38,10 +38,17 @@ const RouterController = () => {
     getUser();
 
     if (state.modal) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
+      // document.body.style.overflow = "hidden";
+      // document.body.style.height = "100%";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.body.style.overflowY = "scroll";
     }
+
+    return () => {
+      document.body.style.position = "static";
+      document.body.style.overflow = "unset";
+    };
 
     // TODO log user out from all tabs if they log out in one tab
   }, [state.modal]);

@@ -162,7 +162,7 @@ const DropDown = () => {
               </DropDownItem>
 
               <DropDownItem>
-                <div className="flex items-center">
+                <div className="flex items-center pt-2 sm:pt-0">
                   <img src={gender} alt="gender" className="h-6 w-8 mr-3" />
                   <div href="#">{updatedUser.gender}</div>
                 </div>

@@ -80,10 +80,15 @@ const SinglePost = (props) => {
 
   useEffect(() => {
     if (state.editForm || state.deleteForm) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.body.style.overflowY = "scroll";
     }
+
+    return () => {
+      document.body.style.position = "static";
+      document.body.style.overflow = "unset";
+    };
   }, [state.editForm, state.deleteForm]);
 
   return (

@@ -82,7 +82,7 @@ const Header = () => {
             <img
               src={PlusIcon}
               alt="Icon"
-              className="focus:outline-none mr-2 sm:mr-0 lg:w-10 w-8"
+              className="focus:outline-none sm:mr-0 lg:w-10 w-8"
             />
           </div>
         </Tippy>
