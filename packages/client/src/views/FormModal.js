@@ -86,7 +86,7 @@ const FormModal = () => {
       <div className="flex">
         <button
           type="button"
-          className="ml-auto absolute top-0 right-0 p-5 focus:outline-none"
+          className="ml-auto absolute top-0 right-0 p-16 sm:p-5 focus:outline-none"
           onClick={() => dispatch(ToggleSellForm())}
         >
           <img
@@ -108,7 +108,7 @@ const FormModal = () => {
 
       {/* {status === "success" && dispatch(ToggleModal())} */}
       <form className="w-full max-w-lg" onSubmit={onSubmitHandler}>
-        <div className="flex flex-wrap -mx-3 mb-2">
+        <div className="flex flex-col sm:flex-row -mx-3 mb-2">
           {/* Book Name */}
           <div className="w-full md:w-1/2 px-3 mb-3 md:mb-0">
             <label
@@ -118,7 +118,7 @@ const FormModal = () => {
               Book Name
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block  bg-gray-200 text-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="name"
               type="text"
               placeholder="The alchemist"
@@ -137,7 +137,7 @@ const FormModal = () => {
               Book Writer
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block bg-gray-200 text-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="writer"
               type="text"
               placeholder="Asif Adnan"
@@ -190,7 +190,7 @@ const FormModal = () => {
 
         <div className="flex flex-wrap -mx-3 mb-3">
           {/* Book Summary */}
-          <div className="w-full md:w-1/2 px-3">
+          <div className="hidden sm:block w-full md:w-1/2 px-3">
             <label
               htmlFor="summary"
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -209,7 +209,7 @@ const FormModal = () => {
           </div>
 
           {/* Post Description */}
-          <div className="w-full md:w-1/2 px-3">
+          <div className="hidden sm:block w-full md:w-1/2 px-3">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="description"
@@ -271,13 +271,6 @@ const FormModal = () => {
                   </span>
                 ))}
               <span className="ml-5 rounded-md shadow-sm">
-                {/* <button
-                  type="button"
-                  className="py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
-                >
-                  Change
-                </button> */}
-                {/* <input type="file" name="image" /> */}
                 <label htmlFor="file-input">
                   <img
                     className="w-10 h-10 cursor-pointer"

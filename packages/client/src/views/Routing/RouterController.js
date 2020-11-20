@@ -4,7 +4,6 @@ import setAuthToken from "src/utils/setAuthToken";
 import { store } from "src/context/store";
 import axios from "axios";
 import { AUTH_ERROR, USER_LOADED } from "src/context/action/actionTypes";
-import { useQuery } from "react-query";
 import SinglePost from "src/views/SinglePost";
 import Signin from "../Signin";
 import Signup from "../Signup";
@@ -14,22 +13,11 @@ import ReSignin from "../ReSignin";
 import Forget from "../Forget";
 import Reset from "../Reset";
 import DashBoard from "../DashBoard";
-import PrivateRoutes from "./PrivateRoutes";
 import PublicRoutes from "./PublicRoutes";
 import ProfileModal from "../ProfileModal";
 import FormModal from "../FormModal";
 
-// const FetchPosts = async () => {
-//   const {
-//     data: { posts },
-//   } = await axios.get(`${process.env.API_URL}/api/posts`);
-
-//   return posts;
-// };
-
 const RouterController = () => {
-  // useQuery("posts", FetchPosts);
-
   const { dispatch, state } = useContext(store);
   useEffect(() => {
     // check for token in LS
@@ -49,11 +37,21 @@ const RouterController = () => {
 
     getUser();
 
-    document.body.style.overflow = "hidden";
-    return () => (document.body.style.overflow = "unset");
+    if (state.modal) {
+      // document.body.style.overflow = "hidden";
+      // document.body.style.height = "100%";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.body.style.overflowY = "scroll";
+    }
+
+    return () => {
+      document.body.style.position = "static";
+      document.body.style.overflow = "unset";
+    };
 
     // TODO log user out from all tabs if they log out in one tab
-  }, []);
+  }, [state.modal]);
 
   return (
     <Router>

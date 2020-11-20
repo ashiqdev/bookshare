@@ -86,7 +86,7 @@ const ProfileModal = () => {
       <div className="flex">
         <button
           type="button"
-          className="ml-auto absolute top-0 right-0 p-5 focus:outline-none"
+          className="ml-auto absolute top-0 right-0  p-16 sm:p-5  focus:outline-none"
           onClick={() => dispatch(ToggleModal())}
         >
           <img
@@ -122,7 +122,7 @@ const ProfileModal = () => {
       )} */}
 
       {/* {status === "success" && dispatch(ToggleModal())} */}
-      <form className="w-full max-w-lg" onSubmit={onSubmitHandler}>
+      <form className="w-64 sm:w-full sm:max-w-lg" onSubmit={onSubmitHandler}>
         <div className="flex flex-col sm:flex-row sm:flex-wrap -mx-3 mb-6">
           {/* address */}
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -247,7 +247,7 @@ const ProfileModal = () => {
                   </svg>
                 )}
               </span>
-              <span className="ml-0 sm:ml-5 mt-4 rounded-md shadow-sm">
+              <span className="ml-5 mt-4 rounded-md shadow-sm">
                 <input
                   type="file"
                   name="photo"
@@ -256,6 +256,23 @@ const ProfileModal = () => {
                   className="w-3 -ml-12 sm:ml-0"
                 />
               </span>
+              {/* <span className="ml-5 rounded-md shadow-sm">
+                <label htmlFor="file-input">
+                  <img
+                    className="w-10 h-10 cursor-pointer"
+                    src="https://icon-library.net/images/upload-photo-icon/upload-photo-icon-21.jpg"
+                    alt="ok"
+                  />
+                </label>
+                <input
+                  type="file"
+                  id="file-input"
+                  name="photo"
+                  onChange={handleFileInputChange}
+                  value={fileInputState}
+                  className="w-3 hidden"
+                />
+              </span> */}
             </div>
           </div>
         </div>
