@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useHistory } from "react-router-dom";
 import { useQuery, useInfiniteQuery } from "react-query";
 
 import BeatLoader from "react-spinners/BeatLoader";
@@ -24,6 +25,7 @@ const FetchCurrentUser = async () => {
 };
 
 const DashBoard = () => {
+  const history = useHistory();
   const [criteria, setCriteria] = useState("");
 
   useQuery("user", FetchCurrentUser);
@@ -75,10 +77,9 @@ const DashBoard = () => {
   }, [criteria]);
 
   console.log(data);
-
   return (
-    <div className="bg-gray-300 w-full">
-      <div className="flex flex-col container mx-auto mt-6 lg:mt-6 pt-64 sm:pt-32 bg-gray-300 overflow-hidden">
+    <div className="bg-gray-300 w-full pt-76 sm:pt-0">
+      <div className="flex flex-col container mx-auto mt-6 lg:mt-6 sm:pt-32 bg-gray-300 overflow-hidden">
         {/* <!-- SORT BY --> */}
         <div className="flex">
           <div className="inline-block text-left ml-auto">

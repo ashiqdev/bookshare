@@ -1,7 +1,25 @@
 import { NotFound } from "../utils/errors";
-import Post from "../models/Post";
 
-export const savePost = async (post) => new Post(post).save();
+import Post from "../models/Post";
+import {
+  deleteFromAlgolia,
+  insertToAlgolia,
+  updateToAlgolia,
+} from "../utils/algolia";
+
+// export const savePost = async (post) => new Post(post).save();
+
+export const savePost = async (post) => {
+  const newPost = await new Post(post).save();
+  // await index.saveObject({
+  //   id: post._id,
+  //   title: post.title,
+  //   price: post.price,
+  // });
+  await insertToAlgolia(newPost);
+
+  return newPost;
+};
 
 export const getAllPosts = async (flag = -1, page, perPage) => {
   let field;
@@ -58,7 +76,10 @@ export const update = async (post, id) => {
     new: true,
   }).exec();
 
-  if (updatedPost) return updatedPost;
+  if (updatedPost) {
+    await updateToAlgolia(updatedPost);
+    return updatedPost;
+  }
   throw new NotFound("Post not found by given id");
 };
 
@@ -66,6 +87,7 @@ export const deleteById = async (id) => {
   const post = await Post.findOne({ _id: id });
   if (post) {
     await Post.deleteOne({ _id: id });
+    await deleteFromAlgolia(id);
     return;
   }
 

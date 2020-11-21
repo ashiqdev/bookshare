@@ -37,13 +37,11 @@ const SignIn = (props) => {
     e.preventDefault();
     signInMutate(values, {
       onSuccess: (data) => {
-        let { data: authData } = data;
-        if (props.location.next) {
-          authData = { ...authData, path: props.location.next || "/dashboard" };
-        }
+        const { data: authData } = data;
+        // if (props.location.next) {
+        //   authData = { ...authData, path: props.location.next || "/dashboard" };
+        // }
         dispatch(LoginUser(authData));
-        // TODO redirect to home page (protected)
-
         if (props.location.next) {
           return props.history.push(props.location.next);
         }
