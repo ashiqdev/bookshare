@@ -88,8 +88,10 @@ const SinglePost = (props) => {
     return () => {
       document.body.style.position = "static";
       document.body.style.overflow = "unset";
+      if (history.action === "POP") {
+      }
     };
-  }, [state.editForm, state.deleteForm]);
+  }, [state.editForm, state.deleteForm, history]);
 
   return (
     <div className="flex flex-col container mx-auto mt-6 lg:mt-6 pt-64 sm:pt-32 bg-gray-300 overflow-hidden">
