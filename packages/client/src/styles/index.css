@@ -22375,6 +22375,24 @@ em {
   margin-top: 5px;
 }
 
+.react-autosuggest__input::-moz-placeholder {
+  font-size: 1rem;
+  /* font-weight: bold; */
+  color: #8395a7;
+}
+
+.react-autosuggest__input:-ms-input-placeholder {
+  font-size: 1rem;
+  /* font-weight: bold; */
+  color: #8395a7;
+}
+
+.react-autosuggest__input::placeholder {
+  font-size: 1rem;
+  /* font-weight: bold; */
+  color: #8395a7;
+}
+
 .react-autosuggest__input--focused {
   outline: none;
 }
@@ -22443,11 +22461,6 @@ a {
   /* margin: 20px; */
   padding: 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-h1 {
-  text-align: center;
-  color: #696969;
 }
 
 @media (min-width: 640px) {
