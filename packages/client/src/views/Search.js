@@ -1,11 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import algoliasearch from "algoliasearch/lite";
-import {
-  InstantSearch,
-  Configure,
-  Hits,
-  connectSearchBox,
-} from "react-instantsearch-dom";
+import { InstantSearch, Configure } from "react-instantsearch-dom";
 
 import { useHistory } from "react-router-dom";
 
@@ -37,11 +32,6 @@ const Search = () => {
     searchForFacetValues: algoliaClient.searchForFacetValues,
   };
 
-  // const searchClient = algoliasearch(
-  //   process.env.APP_KEY,
-  //   process.env.SEARCH_ONLY_KEY
-  // );
-
   const [query, setQuery] = useState("");
 
   const onSuggestionSelected = (e, { suggestion }) => {
@@ -58,15 +48,6 @@ const Search = () => {
 
   return (
     <>
-      {/* <input
-        className="bg-gray-200 h-10 px-4  text-xs lg:text-lg w-full rounded-lg placeholder-gray-700 lg:-mt-1"
-        type="text"
-        placeholder="Macbook Pro 2020"
-      />
-      <span className="flex items-center absolute right-0 inset-y-0 mr-0 sm:mr-3 text-base">
-        <i className="fa fa-search text-black" />
-      </span> */}
-
       <InstantSearch
         indexName={process.env.INDEX_NAME}
         searchClient={searchClient}

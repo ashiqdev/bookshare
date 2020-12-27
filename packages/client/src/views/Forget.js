@@ -13,7 +13,6 @@ const override = css`
 `;
 
 const Forget = () => {
-  const { API_URL } = process.env;
   const [tempEmail, setTempEmail] = useState("");
   const [values, onChangeHandler, reset] = UseForm({
     email: "",
@@ -25,10 +24,6 @@ const Forget = () => {
   ] = useMutation((value) =>
     axios.post(`${process.env.API_URL}/api/users/forget`, value)
   );
-
-  // const [resendMutate, { isLoading, isSuccess }] = useMutation((email) =>
-  //   axios.post(`${API_URL}/api/users/forget`, email)
-  // );
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -71,7 +66,6 @@ const Forget = () => {
                     onClick={() => forgetMutate({ email: tempEmail })}
                     className="flex rounded-full bg-indigo-500 text-white uppercase px-2 py-1 text-xs font-bold mr-3 focus:outline-none"
                   >
-                    {/* const drink = dislikeCoke ? 'fanta' : likesCherry ? 'cherryCoke' : 'dietCoke'; */}
                     <span>{`Resen${
                       // eslint-disable-next-line no-nested-ternary
                       isLoading ? "ding" : isSuccess ? "t" : "d"

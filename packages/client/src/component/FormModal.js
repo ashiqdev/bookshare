@@ -5,12 +5,13 @@ import { useHistory } from "react-router-dom";
 import Modal from "react-modal";
 import axios from "axios";
 import { useMutation, queryCache } from "react-query";
-import { ToggleModal, ToggleSellForm } from "src/context/action/actions";
+import { ToggleSellForm } from "src/context/action/actions";
 import { store } from "src/context/store";
 import BeatLoader from "react-spinners/BeatLoader";
 import { css } from "@emotion/core";
+import makeToast from "src/component/Toaster";
+import Errors from "src/views/Errors";
 import UseForm from "../hooks/useForm";
-import Errors from "./Errors";
 import RemoveIcon from "../assets/icons/remove.svg";
 
 const override = css`
@@ -47,7 +48,7 @@ const FormModal = () => {
   console.log({ updatedUser });
 
   const { API_URL } = process.env;
-  const [values, onChangeHandler, reset] = UseForm({
+  const [values, onChangeHandler] = UseForm({
     name: "",
     writer: "",
     title: "",
@@ -56,7 +57,7 @@ const FormModal = () => {
     description: "",
   });
 
-  const [postMutate, { status, error, data }] = useMutation(
+  const [postMutate, { status, error }] = useMutation(
     async (value) => {
       // eslint-disable-next-line no-param-reassign
       if (previewSource.length > 0) value = { ...value, images: previewSource };
@@ -66,6 +67,7 @@ const FormModal = () => {
       onSuccess: () => {
         queryCache.refetchQueries("posts");
         dispatch(ToggleSellForm());
+        makeToast("success", "your ad has been submitted!");
         // go to homepage
         return history.push("/");
       },
@@ -106,7 +108,6 @@ const FormModal = () => {
         </div>
       )}
 
-      {/* {status === "success" && dispatch(ToggleModal())} */}
       <form className="w-full max-w-lg" onSubmit={onSubmitHandler}>
         <div className="flex flex-col sm:flex-row -mx-3 mb-2">
           {/* Book Name */}
@@ -236,29 +237,6 @@ const FormModal = () => {
               Book Images
             </label>
             <div className="mt-2 flex items-center">
-              {/* <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
-                {previewSource ? (
-                  <img
-                    src={previewSource}
-                    alt="Chosen"
-                    className="h-full w-full text-gray-300"
-                  />
-                ) : updatedUser?.image ? (
-                  <img
-                    src={updatedUser.image}
-                    alt="Chosen"
-                    className="h-full w-full text-gray-300"
-                  />
-                ) : (
-                  <svg
-                    className="h-full w-full text-gray-300"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                )}
-              </span> */}
               {console.log(previewSource.length)}
               {previewSource.length > 0 &&
                 previewSource.map((image) => (

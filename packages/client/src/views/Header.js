@@ -12,8 +12,8 @@ import axios from "axios";
 import setAuthToken from "src/utils/setAuthToken";
 import SigninIcon from "src/assets/icons/enter.svg";
 import SignupIcon from "src/assets/icons/reg.svg";
+import DropDown from "src/component/DropDown";
 import Logo from "../assets/images/boilogo.png";
-import DropDown from "./DropDown";
 import Search from "./Search";
 
 import PlusIcon from "../assets/icons/pllus.svg";
@@ -101,31 +101,6 @@ const Header = () => {
 
         {state?.box && <DropDown />}
       </div>
-
-      {/* <div className="ml-5 mb-6 lg:mb-0 -mt-3 relative z-100 h-12 lg:h-auto">
-        <button
-          type="submit"
-          className="bg-green-500 text-white py-3 sm:px-5 sm:py-4 rounded-lg text-lg sm:text-xl shadow-md hover:bg-green-600 focus:outline-none w-24 sm:w-40 -mt-3 sm:-mt-0 mr-2 sm:mr-0"
-          // onClick={() => dispatch(ToggleBox())}
-          onClick={() => {
-            dispatch(ToggleBox());
-          }}
-        >
-          {state && state.user && captitalize(state.user.name.split(" ")[0])}
-        </button>
-        {state && state.box && <DropDown />}
-      </div> */}
-      {/* 
-      <div className='ml-5 mb-6 lg:mb-0 -mt-3 relative z-100 h-12 lg:h-auto'>
-        <button
-          type='submit'
-          className='bg-green-500 text-white py-3 sm:px-5 sm:py-4 rounded-lg text-lg sm:text-xl shadow-md hover:bg-green-600 focus:outline-none w-24 sm:w-40 -mt-3 sm:-mt-0 mr-2 sm:mr-0'
-          // dispatch({ type: AUTH_ERROR });
-          onClick={() => dispatch({ type: LOG_OUT })}
-        >
-          Log Out
-        </button>
-      </div> */}
     </>
   );
 

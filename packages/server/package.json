@@ -58,6 +58,7 @@
     "morgan": "^1.10.0",
     "node-fetch": "^2.6.1",
     "nodemailer": "^6.4.11",
+    "nodemailer-smtp-transport": "^2.7.4",
     "superagent": "^6.1.0",
     "supertest": "^5.0.0",
     "winston": "^3.3.3",

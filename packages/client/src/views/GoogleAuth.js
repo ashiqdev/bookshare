@@ -5,6 +5,7 @@ import GoogleLogin from "react-google-login";
 import axios from "axios";
 import { LoginUser } from "src/context/action/actions";
 import { store } from "src/context/store";
+import makeToast from "src/component/Toaster";
 
 const GoogleAuth = ({ path }) => {
   const history = useHistory();
@@ -19,7 +20,8 @@ const GoogleAuth = ({ path }) => {
     const { data: googleAuthData } = res;
     console.log({ googleAuthData });
     dispatch(LoginUser(googleAuthData));
-    // TODO redirect to home page
+    makeToast("success", "successfully signed in");
+
     if (path) {
       // console.log(");
       return history.push(path);

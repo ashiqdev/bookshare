@@ -5,16 +5,13 @@ import { useHistory } from "react-router-dom";
 import Modal from "react-modal";
 import axios from "axios";
 import { useMutation, queryCache } from "react-query";
-import {
-  ToggleEditForm,
-  ToggleModal,
-  ToggleSellForm,
-} from "src/context/action/actions";
+import { ToggleEditForm } from "src/context/action/actions";
 import { store } from "src/context/store";
 import BeatLoader from "react-spinners/BeatLoader";
 import { css } from "@emotion/core";
+import makeToast from "src/component/Toaster";
+import Errors from "src/views/Errors";
 import UseForm from "../hooks/useForm";
-import Errors from "./Errors";
 import RemoveIcon from "../assets/icons/remove.svg";
 
 const override = css`
@@ -25,7 +22,6 @@ const override = css`
 
 const EditModal = ({ id, post }) => {
   console.log({ id, post });
-  const history = useHistory();
   const { state, dispatch } = useContext(store);
   const [fileInputState, setFileInputState] = useState("");
   const [previewSource, setPreviewSource] = useState([...post.book.images]);
@@ -75,6 +71,7 @@ const EditModal = ({ id, post }) => {
       onSuccess: () => {
         queryCache.refetchQueries(["post", id]);
         dispatch(ToggleEditForm());
+        makeToast("success", "your ad has been updated");
         // go to homepage
         // return history.push("/");
       },

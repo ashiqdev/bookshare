@@ -5,6 +5,8 @@ import { store } from "src/context/store";
 import axios from "axios";
 import { AUTH_ERROR, USER_LOADED } from "src/context/action/actionTypes";
 import SinglePost from "src/views/SinglePost";
+import ProfileModal from "src/component/ProfileModal";
+import FormModal from "src/component/FormModal";
 import Signin from "../Signin";
 import Signup from "../Signup";
 import Verify from "../Verify";
@@ -14,8 +16,6 @@ import Forget from "../Forget";
 import Reset from "../Reset";
 import DashBoard from "../DashBoard";
 import PublicRoutes from "./PublicRoutes";
-import ProfileModal from "../ProfileModal";
-import FormModal from "../FormModal";
 
 const RouterController = () => {
   const { dispatch, state } = useContext(store);

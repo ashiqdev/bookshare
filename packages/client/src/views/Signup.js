@@ -5,6 +5,7 @@ import { useMutation } from "react-query";
 import axios from "axios";
 import { css } from "@emotion/core";
 import BeatLoader from "react-spinners/BeatLoader";
+import makeToast from "src/component/Toaster";
 
 import UseForm from "../hooks/useForm";
 import Errors from "./Errors";
@@ -82,6 +83,7 @@ const Signup = () => {
                 setTempEmail(values.email);
                 signupMutate(values);
                 reset();
+                makeToast("success", "Successfully registered");
               }}
               className="text-green-500"
             >

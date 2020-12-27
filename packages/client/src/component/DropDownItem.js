@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { store } from "src/context/store";
 
 const DropDownItem = ({

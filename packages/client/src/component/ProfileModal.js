@@ -8,8 +8,8 @@ import { ToggleModal } from "src/context/action/actions";
 import { store } from "src/context/store";
 import BeatLoader from "react-spinners/BeatLoader";
 import { css } from "@emotion/core";
+import Errors from "src/views/Errors";
 import UseForm from "../hooks/useForm";
-import Errors from "./Errors";
 import RemoveIcon from "../assets/icons/remove.svg";
 
 const override = css`
@@ -44,14 +44,14 @@ const ProfileModal = () => {
   console.log({ updatedUser });
 
   const { API_URL } = process.env;
-  const [values, onChangeHandler, reset] = UseForm({
+  const [values, onChangeHandler] = UseForm({
     address: updatedUser ? updatedUser.address : "",
     phone: updatedUser ? updatedUser.phone : "",
     gender: updatedUser?.gender ? updatedUser.gender : "male",
     linkedIn: updatedUser ? updatedUser.linkedIn : "",
   });
 
-  const [profileMutate, { status, data, error }] = useMutation(
+  const [profileMutate, { status, error }] = useMutation(
     async (value) => {
       // eslint-disable-next-line no-param-reassign
       if (previewSource) value = { ...value, image: previewSource };
@@ -71,10 +71,6 @@ const ProfileModal = () => {
     e.preventDefault();
     profileMutate(values);
   };
-
-  //   useEffect(() => {
-  //     useQuery("user", FetchCurrentUser);
-  //   }, []);
 
   return (
     <Modal
@@ -113,15 +109,6 @@ const ProfileModal = () => {
         </p>
       )}
 
-      {/* {previewSource && (
-        <img
-          src={previewSource}
-          alt="Chosen"
-          className="h-full w-full text-gray-300"
-        />
-      )} */}
-
-      {/* {status === "success" && dispatch(ToggleModal())} */}
       <form className="w-64 sm:w-full sm:max-w-lg" onSubmit={onSubmitHandler}>
         <div className="flex flex-col sm:flex-row sm:flex-wrap -mx-3 mb-6">
           {/* address */}
@@ -256,23 +243,6 @@ const ProfileModal = () => {
                   className="w-3 -ml-12 sm:ml-0"
                 />
               </span>
-              {/* <span className="ml-5 rounded-md shadow-sm">
-                <label htmlFor="file-input">
-                  <img
-                    className="w-10 h-10 cursor-pointer"
-                    src="https://icon-library.net/images/upload-photo-icon/upload-photo-icon-21.jpg"
-                    alt="ok"
-                  />
-                </label>
-                <input
-                  type="file"
-                  id="file-input"
-                  name="photo"
-                  onChange={handleFileInputChange}
-                  value={fileInputState}
-                  className="w-3 hidden"
-                />
-              </span> */}
             </div>
           </div>
         </div>

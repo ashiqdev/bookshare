@@ -3,6 +3,7 @@ import FacebookLogin from "react-facebook-login";
 import axios from "axios";
 import { LoginUser } from "src/context/action/actions";
 import { store } from "src/context/store";
+import makeToast from "src/component/Toaster";
 
 const FacebookAuth = () => {
   const { state, dispatch } = useContext(store);
@@ -15,6 +16,7 @@ const FacebookAuth = () => {
     );
     const { data: fbAuthData } = res;
     dispatch(LoginUser(fbAuthData));
+    makeToast("success", "successfully signed in");
   };
   return (
     <div>

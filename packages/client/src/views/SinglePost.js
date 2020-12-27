@@ -4,9 +4,7 @@ import { useQuery, useMutation, queryCache } from "react-query";
 import moment from "moment";
 import axios from "axios";
 import Errors from "src/views/Errors";
-import BeatLoader from "react-spinners/BeatLoader";
 import avatar from "src/assets/icons/placeholder.png";
-import { css } from "@emotion/core";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import captitalize from "src/utils/captitalize";
@@ -31,16 +29,11 @@ import {
   RedditIcon,
 } from "react-share";
 import { ToggleDeleteForm, ToggleEditForm } from "src/context/action/actions";
-import DeleteModal from "./DeleteModal";
-import EditModal from "./EditModal";
+import SkeletonPost from "src/skeletons/SkeletonPost";
+import DeleteModal from "src/component/DeleteModal";
+import EditModal from "src/component/EditModal";
 
 const { API_URL } = process.env;
-
-const override = css`
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-`;
 
 const FetchSinglePost = async (key, id) => {
   const {
@@ -88,8 +81,6 @@ const SinglePost = (props) => {
     return () => {
       document.body.style.position = "static";
       document.body.style.overflow = "unset";
-      if (history.action === "POP") {
-      }
     };
   }, [state.editForm, state.deleteForm, history]);
 
@@ -111,11 +102,7 @@ const SinglePost = (props) => {
       {error &&
         error.response.data.errors.map((e, i) => <Errors key={i} error={e} />)}
 
-      {status === "loading" && (
-        <div className="sweet-loading max-w-xs mx-auto">
-          <BeatLoader css={override} size={15} color="#38a169" />
-        </div>
-      )}
+      {status === "loading" && <SkeletonPost />}
 
       {status === "success" && (
         <div className=" lg:bg-white p-8">
@@ -128,7 +115,7 @@ const SinglePost = (props) => {
               <div className="p-3 text-gray-700 lg:w-128 xl:mr-32">
                 <Carousel width="" dynamicHeight>
                   {data?.book?.images.map((image, i) => (
-                    <div className="lg:h-128">
+                    <div className="lg:h-128" key={i}>
                       <img src={image} alt={`${i}`} className="h-full" />
                     </div>
                   ))}
@@ -258,13 +245,6 @@ const SinglePost = (props) => {
               {moment(date).fromNow()}{" "}
             </p>
           </div>
-
-          {/* {data?.writer && (
-            <div className="flex">
-              <p>Writeen By</p>
-              <p>{data.writer}</p>
-            </div>
-          )} */}
 
           <div className="p-0 lg:p-3">
             <h3 className="font-bold text-xl text-gray-700 inline-block border-b border-gray-300 mb-3">

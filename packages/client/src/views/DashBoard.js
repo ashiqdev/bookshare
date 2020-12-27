@@ -1,19 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { useHistory } from "react-router-dom";
 import { useQuery, useInfiniteQuery } from "react-query";
-
-import BeatLoader from "react-spinners/BeatLoader";
-import { css } from "@emotion/core";
 
 import setAuthToken from "src/utils/setAuthToken";
 import axios from "axios";
-import BookList from "./BookList";
-
-const override = css`
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-`;
+import SkeletonPosts from "src/skeletons/SkeletonPosts";
+import BookDetails from "./BookDetails";
 
 const FetchCurrentUser = async () => {
   setAuthToken(localStorage.token);
@@ -25,7 +16,6 @@ const FetchCurrentUser = async () => {
 };
 
 const DashBoard = () => {
-  const history = useHistory();
   const [criteria, setCriteria] = useState("");
 
   useQuery("user", FetchCurrentUser);
@@ -43,6 +33,7 @@ const DashBoard = () => {
 
     return posts;
   };
+
   const {
     data,
     status,
@@ -76,7 +67,6 @@ const DashBoard = () => {
     refetch();
   }, [criteria]);
 
-  console.log(data);
   return (
     <div className="bg-gray-300 w-full pt-76 sm:pt-0">
       <div className="flex flex-col container mx-auto mt-6 lg:mt-6 sm:pt-32 bg-gray-300 overflow-hidden">
@@ -106,29 +96,24 @@ const DashBoard = () => {
 
         {/* <!-- ITEMS --> */}
         <div className=" px-3 sm:px-4 lg:px-0">
-          {status === "loading" && (
-            <div className="sweet-loading max-w-xs mx-auto">
-              <BeatLoader css={override} size={15} color="#38a169" />
-            </div>
-          )}
-          {/* {data?.posts?.map((post) => (
-            <BookList key={post._id} post={post} />
-          ))} */}
+          {status === "loading" &&
+            [1, 2, 3, 4].map((n) => <SkeletonPosts key={n} />)}
+
           {data &&
-            data.map((page, i) => {
+            data.map((page) => {
               return (
                 <>
                   {page.posts.map((post, index) => {
                     if (page.posts.length === index + 1) {
                       return (
-                        <BookList
+                        <BookDetails
                           reference={lastBookElementRef}
                           key={post._id}
                           post={post}
                         />
                       );
                     }
-                    return <BookList key={post._id} post={post} />;
+                    return <BookDetails key={post._id} post={post} />;
                   })}
                 </>
               );

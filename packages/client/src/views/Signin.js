@@ -7,6 +7,7 @@ import { LoginUser } from "src/context/action/actions";
 import { store } from "src/context/store";
 import { css } from "@emotion/core";
 import BeatLoader from "react-spinners/BeatLoader";
+import makeToast from "src/component/Toaster";
 import UseForm from "../hooks/useForm";
 import Errors from "./Errors";
 import FacebookAuth from "./FacebookAuth";
@@ -20,8 +21,6 @@ const override = css`
 
 const SignIn = (props) => {
   const { dispatch } = useContext(store);
-
-  console.log(props.location.next);
 
   const { API_URL } = process.env;
   const [values, onChangeHandler, reset] = UseForm({
@@ -38,14 +37,11 @@ const SignIn = (props) => {
     signInMutate(values, {
       onSuccess: (data) => {
         const { data: authData } = data;
-        // if (props.location.next) {
-        //   authData = { ...authData, path: props.location.next || "/dashboard" };
-        // }
         dispatch(LoginUser(authData));
+        makeToast("success", "successfully signed in");
         if (props.location.next) {
           return props.history.push(props.location.next);
         }
-        // props.history.push("/dashboard");
       },
     });
     reset();

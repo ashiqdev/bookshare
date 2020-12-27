@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Modal from "react-modal";
 import App from "./views/App";
 import "./styles/index.css";
+import "src/skeletons/Skeleton.css";
 
 Modal.setAppElement("#root");
 

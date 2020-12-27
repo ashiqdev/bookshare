@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from "react";
-import { useMutation, queryCache, useQuery } from "react-query";
+import { useMutation } from "react-query";
 import axios from "axios";
 import { css } from "@emotion/core";
 import BeatLoader from "react-spinners/BeatLoader";
 import { LoginUser } from "src/context/action/actions";
 import { Link } from "react-router-dom";
-import UseForm from "../hooks/useForm";
+import makeToast from "src/component/Toaster";
+// import Spinner from "src/component/Spinner";
+import UseForm from "src/hooks/useForm";
 import { store } from "../context/store";
 import Errors from "./Errors";
 
@@ -37,7 +39,7 @@ const ReSignin = ({ location: { message } }) => {
       onSuccess: (data) => {
         const { data: authData } = data;
         dispatch(LoginUser(authData));
-        // 3. redirect to home page (protected)
+        makeToast("success", "successfully signed in");
       },
     });
     reset();
@@ -59,6 +61,7 @@ const ReSignin = ({ location: { message } }) => {
             {isLoading && (
               <div className="sweet-loading max-w-xs mx-auto">
                 <BeatLoader css={override} size={15} color="#38a169" />
+                {/* <Spinner /> */}
               </div>
             )}
           </div>

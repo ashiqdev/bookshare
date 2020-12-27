@@ -5,17 +5,11 @@ import { useHistory } from "react-router-dom";
 import Modal from "react-modal";
 import axios from "axios";
 import { useMutation, queryCache } from "react-query";
-import {
-  ToggleDeleteForm,
-  ToggleModal,
-  ToggleSellForm,
-} from "src/context/action/actions";
+import { ToggleDeleteForm } from "src/context/action/actions";
 import { store } from "src/context/store";
 import BeatLoader from "react-spinners/BeatLoader";
 import { css } from "@emotion/core";
-import UseForm from "../hooks/useForm";
-import Errors from "./Errors";
-import RemoveIcon from "../assets/icons/remove.svg";
+import Errors from "src/views/Errors";
 
 const override = css`
   display: block;
@@ -23,7 +17,7 @@ const override = css`
   text-align: center;
 `;
 
-const FormModal = ({ id }) => {
+const DeleteModal = ({ id }) => {
   const history = useHistory();
   const { state, dispatch } = useContext(store);
   const [fileInputState, setFileInputState] = useState("");
@@ -128,4 +122,4 @@ const FormModal = ({ id }) => {
   );
 };
 
-export default FormModal;
+export default DeleteModal;
