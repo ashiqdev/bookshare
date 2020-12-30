@@ -237,17 +237,20 @@ const FormModal = () => {
               Book Images
             </label>
             <div className="mt-2 flex items-center">
-              {console.log(previewSource.length)}
               {previewSource.length > 0 &&
-                previewSource.map((image) => (
-                  <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100 mr-2">
-                    <img
-                      src={image}
-                      alt=""
-                      className="h-full w-full text-gray-300 inline-block"
-                    />
-                  </span>
-                ))}
+                previewSource
+                  .filter(
+                    (i) => i !== "https://i.ibb.co/PY6PfWT/placeholder.jpg"
+                  )
+                  .map((image) => (
+                    <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100 mr-2">
+                      <img
+                        src={image}
+                        alt=""
+                        className="h-full w-full text-gray-300 inline-block"
+                      />
+                    </span>
+                  ))}
               <span className="ml-5 rounded-md shadow-sm">
                 <label htmlFor="file-input">
                   <img

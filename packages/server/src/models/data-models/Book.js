@@ -13,7 +13,6 @@ const bookSchema = new Schema({
   summary: String,
   images: {
     type: [String],
-    required: true,
   },
   owner: {
     type: Schema.Types.ObjectId,

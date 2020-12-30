@@ -97,7 +97,7 @@ const DashBoard = () => {
         {/* <!-- ITEMS --> */}
         <div className=" px-3 sm:px-4 lg:px-0">
           {status === "loading" &&
-            [1, 2, 3, 4].map((n) => <SkeletonPosts key={n} />)}
+            [1, 2, 3, 4].map((n, i) => <SkeletonPosts key={i} />)}
 
           {data &&
             data.map((page) => {

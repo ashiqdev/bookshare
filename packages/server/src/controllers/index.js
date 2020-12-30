@@ -1,9 +1,7 @@
-import configureUserController from "./user-controller";
-import configurePostController from "./post-controller";
+import routes from "./routes";
 
 const configure = (app) => {
-  configureUserController(app);
-  configurePostController(app);
+  app.use("/api", routes);
 };
 
 export default configure;

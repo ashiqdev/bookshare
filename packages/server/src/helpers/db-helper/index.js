@@ -13,7 +13,7 @@ export const connectWithDb = () => {
     useFindAndModify: false,
   };
 
-  mongoose.connect("mongodb://127.0.0.1:27017/boi", mongodbOptions, (err) => {
+  mongoose.connect(DATABASE, mongodbOptions, (err) => {
     if (err) {
       throw err;
     }

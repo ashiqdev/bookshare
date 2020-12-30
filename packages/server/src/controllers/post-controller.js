@@ -119,6 +119,4 @@ router.delete(
   catchErrors(deleteHandler)
 );
 
-const configure = (app) => app.use("/api/posts", router);
-
-export default configure;
+export default router;
