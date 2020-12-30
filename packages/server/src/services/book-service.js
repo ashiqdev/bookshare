@@ -66,9 +66,6 @@ export const updateBook = async (post, id) => {
     }
   }
 
-  console.log({ updatedImages });
-  console.log({ oldImages });
-
   const updatedBook = await Book.findOneAndUpdate(
     { _id: id },
     { name, writer, summary, images: [...oldImages, ...updatedImages] },

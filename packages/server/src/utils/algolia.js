@@ -9,7 +9,6 @@ const index = client.initIndex(INDEX_NAME);
 // insert data to algolia
 
 export const insertToAlgolia = async ({ _id, title, price }) => {
-  console.log({ _id });
   await index.saveObject(
     {
       title,
