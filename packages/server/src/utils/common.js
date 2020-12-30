@@ -34,7 +34,6 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function sendEmail({ email, token }, type) {
-  console.log("it is called");
   switch (type) {
     case "verification":
       // Send email with verification url
