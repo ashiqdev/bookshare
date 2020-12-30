@@ -2,6 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const BookDetails = ({ post, reference }) => {
+  const { images } = post.book;
+  let filteredImages;
+
+  if (images.length > 1) {
+    filteredImages = images.filter(
+      (img) => img !== "https://i.ibb.co/PY6PfWT/placeholder.jpg"
+    );
+  } else {
+    filteredImages = images;
+  }
   return (
     <Link
       to={`/posts/${post._id}`}
@@ -10,7 +20,7 @@ const BookDetails = ({ post, reference }) => {
     >
       <div className="mr-6 flex-shrink-0 w-64">
         <img
-          src={post.book.images[0]}
+          src={filteredImages[0]}
           alt="Image1"
           className="h-48 w-full rounded-lg"
         />

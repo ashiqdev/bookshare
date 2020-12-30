@@ -1,21 +1,17 @@
 import { NotFound } from "../utils/errors";
 
-import Post from "../models/Post";
+import models from "../models/data-models";
 import {
   deleteFromAlgolia,
   insertToAlgolia,
   updateToAlgolia,
 } from "../utils/algolia";
 
-// export const savePost = async (post) => new Post(post).save();
+const { Post } = models;
 
 export const savePost = async (post) => {
   const newPost = await new Post(post).save();
-  // await index.saveObject({
-  //   id: post._id,
-  //   title: post.title,
-  //   price: post.price,
-  // });
+
   await insertToAlgolia(newPost);
 
   return newPost;

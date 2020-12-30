@@ -1,0 +1,494 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is the Api(REST) of an ad posting site. where user can buy and sell their used/unused books",
+    "version": "1.0.0",
+    "title": "book sharing api",
+    "contact": { "email": "ashikduit@gmail.com" },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+
+  "host": "localhost:7777",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "CRUD opearation of users"
+    },
+
+    {
+      "name": "Posts",
+      "description": "CRUD opearation of posts"
+    }
+  ],
+
+  "schemes": ["http"],
+
+  "paths": {
+    "/users/register": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "register a user",
+        "description": "register a user and send an email with verification link",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "register user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["name", "email", "password"],
+              "properties": {
+                "name": { "type": "string" },
+                "email": { "type": "string" },
+                "password": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "verification url sent to your mail"
+          }
+        }
+      }
+    },
+
+    "/users/verify": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "verify user",
+        "description": "verify the user (check your email for emailToken)",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "verify user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["email", "emailToken"],
+              "properties": {
+                "email": { "type": "string" },
+                "emailToken": { "type": "string" }
+              }
+            }
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "email is verified"
+          }
+        }
+      }
+    },
+
+    "/users/sendVerification": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "resend verification mail",
+        "description": "resent verification email",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "resend verification mail",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["email"],
+              "properties": {
+                "email": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An email is sent with verification token"
+          }
+        }
+      }
+    },
+
+    "/users/login": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "sign in a user",
+        "description": "sign in a user to the system",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "sign in a user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["email", "password"],
+              "properties": {
+                "email": { "type": "string" },
+                "password": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully logged in"
+          }
+        }
+      }
+    },
+
+    "/users/forget": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "forget password",
+        "description": "send an email to reset the password",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request reset password",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["email"],
+              "properties": {
+                "email": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An email is sent with reset token"
+          }
+        }
+      }
+    },
+
+    "/users/reset": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "reset the password",
+        "description": "reset the password with received token",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "reset password",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["resetToken", "password", "confirmPassword"],
+              "properties": {
+                "resetToken": { "type": "string" },
+                "password": { "type": "string" },
+                "confirmPassword": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "password is changed"
+          }
+        }
+      }
+    },
+
+    "/users/{userId}": {
+      "put": {
+        "tags": ["Users"],
+        "summary": "Complete profile",
+        "description": "Complete the profile of the user",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Id of the user",
+            "required": true,
+            "type": "string"
+          },
+
+          {
+            "name": "body",
+            "in": "body",
+            "description": "complete profile",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["gender", "address", "phone"],
+              "properties": {
+                "gender": { "type": "string" },
+                "address": { "type": "string" },
+                "phone": { "type": "string" },
+                "linkedIn": { "type": "string" }
+              }
+            }
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "profile has been completed"
+          }
+        },
+        "security": [{ "api_key": [] }]
+      }
+    },
+
+    "/posts": {
+      "post": {
+        "tags": ["Posts"],
+        "summary": "post an ad",
+        "description": "create a post",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "create a post",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["title", "price", "name", "writer"],
+              "properties": {
+                "title": { "type": "string" },
+                "description": { "type": "string" },
+                "price": { "type": "string" },
+                "name": { "type": "string" },
+                "writer": { "type": "string" },
+                "summary": { "type": "string" }
+              }
+            }
+          }
+        ],
+
+        "responses": {
+          "201": {
+            "description": "Ad has been posted"
+          }
+        },
+
+        "security": [{ "api_key": [] }]
+      },
+
+      "get": {
+        "tags": ["Posts"],
+        "summary": "get all posts",
+        "description": "Fetch all posts/ads",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "array of ads"
+          }
+        }
+      }
+    },
+
+    "/posts/{postId}": {
+      "get": {
+        "tags": ["Posts"],
+        "summary": "get post by id",
+        "description": "Fetch the post by id",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "description": "Id of the post",
+            "required": true,
+            "type": "string"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "a post object"
+          }
+        }
+      },
+
+      "put": {
+        "tags": ["Posts"],
+        "summary": "update post",
+        "description": "Update the post by id",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "description": "Id of the post",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "update post",
+            "required": "true",
+            "schema": {
+              "type": "object",
+              "required": ["title", "price", "name", "writer"],
+              "properties": {
+                "title": { "type": "string" },
+                "description": { "type": "string" },
+                "price": { "type": "string" },
+                "name": { "type": "string" },
+                "summary": { "type": "string" }
+              }
+            }
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "post has been updated"
+          }
+        },
+        "security": [{ "api_key": [] }]
+      },
+
+      "delete": {
+        "tags": ["Posts"],
+        "summary": "Delete post",
+        "description": "Delete the post by id",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "description": "Id of the post",
+            "required": true,
+            "type": "string"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "post has been deleted"
+          }
+        },
+        "security": [{ "api_key": [] }]
+      }
+    }
+  },
+
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "x-auth-token",
+      "in": "header"
+    }
+  },
+
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "5fe972feda0eaa6a9e5d6ee1"
+        },
+
+        "name": { "type": "string", "example": "Ashiqur Rahman" },
+        "email": { "type": "string", "example": "ashikduit@gmail.com" },
+        "password": { "type": "string", "example": "123456" },
+        "completed": { "type": "string", "example": "false" },
+        "emailVerified": { "type": "boolean" },
+        "emailToken": { "type": "string" },
+        "emailTokenExpiry": { "type": "integer" }
+      }
+    },
+
+    "Post": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "5fe972feda0eaa6a9e5d6ee1"
+        },
+
+        "title": {
+          "type": "string"
+        },
+
+        "description": {
+          "type": "string"
+        },
+
+        "price": {
+          "type": "Number"
+        },
+
+        "type": {
+          "type": "string"
+        },
+
+        "author": {
+          "$ref": "#/definitions/User"
+        },
+
+        "book": {
+          "$ref": "#/definitions/Book"
+        }
+      }
+    },
+
+    "Book": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "5fe972feda0eaa6a9e5d6ee1"
+        },
+
+        "name": {
+          "type": "string"
+        },
+
+        "writer": {
+          "type": "string"
+        },
+
+        "summary": {
+          "type": "string"
+        },
+
+        "images": {
+          "type": "array"
+        },
+
+        "owner": {
+          "$ref": "#/definitions/User"
+        }
+      }
+    }
+  }
+}

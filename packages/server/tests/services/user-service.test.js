@@ -1,13 +1,14 @@
 import request from "supertest";
 import faker from "faker";
 import app from "../../src/app";
-import User from "../../src/models/User";
+import models from "../../src/models/data-models";
 import { closeDatabase, connect, clearDatabase } from "./db-handler";
-import Post from "../../src/models/Post";
 
 /**
  * Connect to a new in-memory database before running any tests.
  */
+
+const { User, Post } = models;
 beforeAll(async () => {
   console.log("connected");
   await connect();

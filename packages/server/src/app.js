@@ -1,10 +1,12 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-import configure from "./controllers";
+import configureRoutes from "./controllers";
 import { processRequest, handleErrors } from "./middlewares";
 import { errorLogger, infoLogger } from "./logger";
 import { NotFound } from "./utils/errors";
+
+const swaggerUI = require("swagger-ui-express");
 
 // create express app
 const app = express();
@@ -22,10 +24,14 @@ if (process.env.ENVIRONMENT !== "test") app.use(morgan("dev"));
 
 if (process.env.ENVIRONMENT !== "test") app.use(infoLogger());
 
-configure(app);
+configureRoutes(app);
 
 if (process.env.ENVIRONMENT !== "test")
   app.use(errorLogger(process.env.DATABASE));
+
+const swaggerDocument = require("./swagger.json");
+
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 // not found error handle [this middlware handles the not found routes]
 const notFound = () => {

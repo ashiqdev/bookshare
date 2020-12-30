@@ -1,8 +1,10 @@
 import bcrypt from "bcryptjs";
 import { BadRequest, NotFound } from "../utils/errors";
-import User from "../models/User";
+import models from "../models/data-models";
 import { createHash, replaceLastNChars, signToken } from "../utils/common";
 import cloudinary from "../utils/cloudinary";
+
+const { User } = models;
 
 export const getAllUsers = async () => {
   const users = await User.find();

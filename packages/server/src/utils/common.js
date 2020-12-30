@@ -2,12 +2,9 @@ import jwt from "jsonwebtoken";
 import { randomBytes } from "crypto";
 import { promisify } from "util";
 import nodemailer from "nodemailer";
-import smtpTransport from "nodemailer-smtp-transport";
 import { resetPasswordTemplate, verifyEmailTemplate } from "./Mail-Templates";
 
 const { APP_SECRET } = process.env;
-
-const jwtValidator = (token) => jwt.verify(token, APP_SECRET);
 
 const signToken = ({ id, name, email }) => {
   return jwt.sign(
@@ -29,7 +26,7 @@ const createHash = async () => {
 const transporter = nodemailer.createTransport({
   host: process.env.MAIL_HOST,
   port: process.env.MAIL_PORT,
-  service: "gmail",
+  // service: "gmail",
 
   auth: {
     user: process.env.MAIL_USER,
@@ -38,7 +35,6 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function sendEmail({ email, token }, type) {
-  console.log("it is called");
   switch (type) {
     case "verification":
       // Send email with verification url

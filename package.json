@@ -12,7 +12,6 @@
     "start:server": "lerna exec --stream --scope=@boi/sever -- yarn start",
     "dev:client": "lerna exec --stream --scope=@boi/client -- yarn dev",
     "lint": "eslint . --fix",
-    "test:controllers": "jest packages/server/tests/controllers --runInBand --forceExit",
     "test:services": "jest packages/server/tests/services --runInBand --forceExit"
   },
   "husky": {
