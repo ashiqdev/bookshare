@@ -1,13 +1,10 @@
-import jwt from 'jsonwebtoken';
-import { randomBytes } from 'crypto';
-import { promisify } from 'util';
-import nodemailer from 'nodemailer';
-import smtpTransport from 'nodemailer-smtp-transport';
-import { resetPasswordTemplate, verifyEmailTemplate } from './Mail-Templates';
+import jwt from "jsonwebtoken";
+import { randomBytes } from "crypto";
+import { promisify } from "util";
+import nodemailer from "nodemailer";
+import { resetPasswordTemplate, verifyEmailTemplate } from "./Mail-Templates";
 
 const { APP_SECRET } = process.env;
-
-const jwtValidator = (token) => jwt.verify(token, APP_SECRET);
 
 const signToken = ({ id, name, email }) => {
   return jwt.sign(
@@ -22,14 +19,13 @@ const signToken = ({ id, name, email }) => {
 
 const createHash = async () => {
   const randomBytesPromise = promisify(randomBytes);
-  const hash = (await randomBytesPromise(20)).toString('hex');
+  const hash = (await randomBytesPromise(20)).toString("hex");
   return hash;
 };
 
 const transporter = nodemailer.createTransport({
   host: process.env.MAIL_HOST,
   port: process.env.MAIL_PORT,
-  service: 'gmail',
 
   auth: {
     user: process.env.MAIL_USER,
@@ -38,23 +34,23 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function sendEmail({ email, token }, type) {
-  console.log('it is called');
+  console.log("it is called");
   switch (type) {
-    case 'verification':
+    case "verification":
       // Send email with verification url
       await transporter.sendMail({
-        from: 'any@any.com',
+        from: "any@any.com",
         to: email,
-        subject: 'Email verification',
+        subject: "Email verification",
         html: verifyEmailTemplate({ email, emailToken: token }),
       });
       break;
 
-    case 'reset':
+    case "reset":
       await transporter.sendMail({
-        from: 'ashikduit@gmail.com',
+        from: "ashikduit@gmail.com",
         to: email,
-        subject: 'Reset Password',
+        subject: "Reset Password",
         html: resetPasswordTemplate(token),
       });
       break;
@@ -63,7 +59,7 @@ export async function sendEmail({ email, token }, type) {
       break;
   }
 
-  const urlType = type === 'verification' ? 'verification' : 'reset';
+  const urlType = type === "verification" ? "verification" : "reset";
 
   return { message: `${urlType} url sent to your mail` };
 }
@@ -72,4 +68,4 @@ const replaceLastNChars = function (str, replace, num) {
   return str.slice(0, -num) + Array(num + 1).join(replace);
 };
 
-export { signToken, createHash, transport, replaceLastNChars };
+export { signToken, createHash, transporter, replaceLastNChars };

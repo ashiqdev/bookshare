@@ -45,7 +45,6 @@ const validationRules = (type) => {
       return [
         // Book body
         check("name", "Book name is required").not().isEmpty(),
-        check("images", "At least one image is required").not().isEmpty(),
 
         // Post body
         check("title", "Title is required").not().isEmpty(),

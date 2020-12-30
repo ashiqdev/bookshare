@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import User from "../../models/User";
+import User from "../../models/data-models/User";
 import { createHash, signToken } from "../../utils/common";
 
 const users = [

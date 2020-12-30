@@ -55,21 +55,21 @@ const SinglePost = (props) => {
 
   const date = new Date(data?.createdAt);
 
-  const [
-    deleteMutate,
-    { status: deleteStatus, error: deleteError, data: deleteRes },
-  ] = useMutation(
-    async () => {
-      await axios.delete(`${API_URL}/api/posts/${id}`);
-    },
-    {
-      onSuccess: () => {
-        console.log("Post has been deleted");
-        queryCache.refetchQueries("posts");
-        return history.push("/");
-      },
-    }
-  );
+  // const [
+  //   deleteMutate,
+  //   { status: deleteStatus, error: deleteError, data: deleteRes },
+  // ] = useMutation(
+  //   async () => {
+  //     await axios.delete(`${API_URL}/api/posts/${id}`);
+  //   },
+  //   {
+  //     onSuccess: () => {
+  //       console.log("Post has been deleted");
+  //       queryCache.refetchQueries("posts");
+  //       return history.push("/");
+  //     },
+  //   }
+  // );
 
   useEffect(() => {
     if (state.editForm || state.deleteForm) {
@@ -114,11 +114,22 @@ const SinglePost = (props) => {
               </div>
               <div className="p-3 text-gray-700 lg:w-128 xl:mr-32">
                 <Carousel width="" dynamicHeight>
-                  {data?.book?.images.map((image, i) => (
-                    <div className="lg:h-128" key={i}>
-                      <img src={image} alt={`${i}`} className="h-full" />
-                    </div>
-                  ))}
+                  {data?.book?.images.length > 1
+                    ? data.book.images
+                        .filter(
+                          (i) =>
+                            i !== "https://i.ibb.co/PY6PfWT/placeholder.jpg"
+                        )
+                        .map((image, i) => (
+                          <div className="lg:h-128" key={i}>
+                            <img src={image} alt={`${i}`} className="h-full" />
+                          </div>
+                        ))
+                    : data.book.images.map((image, i) => (
+                        <div className="lg:h-128" key={i}>
+                          <img src={image} alt={`${i}`} className="h-full" />
+                        </div>
+                      ))}
                 </Carousel>
               </div>
             </div>

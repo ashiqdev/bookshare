@@ -61,6 +61,7 @@
     "nodemailer-smtp-transport": "^2.7.4",
     "superagent": "^6.1.0",
     "supertest": "^5.0.0",
+    "swagger-ui-express": "^4.1.6",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.0",
     "winston-elasticsearch": "^0.10.0",

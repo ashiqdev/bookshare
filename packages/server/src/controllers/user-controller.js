@@ -167,6 +167,4 @@ router.put(
   catchErrors(completeProfileHandler)
 );
 
-const configure = (app) => app.use("/api/users", router);
-
-export default configure;
+export default router;

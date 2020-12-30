@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-import Post from "../models/Post";
+import Post from "../models/data-models/Post";
 import { NotFound } from "../utils/errors";
 
 const jwtValidator = (token) => jwt.verify(token, process.env.APP_SECRET);
