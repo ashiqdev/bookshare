@@ -13,7 +13,6 @@ const DropDownItem = ({
   toggleModal,
 }) => {
   const { dispatch } = useContext(store);
-  console.log({ GOTO: goToMenu });
 
   return (
     <a

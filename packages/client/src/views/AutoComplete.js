@@ -5,7 +5,6 @@ import AutoSuggest from "react-autosuggest";
 import PropTypes from "prop-types";
 
 const AutoComplete = (props) => {
-  console.log({ query: props.query });
   const { currentRefinement, hits, onSuggestionSelected } = props;
   const [value, setValue] = useState(currentRefinement);
 
@@ -23,7 +22,6 @@ const AutoComplete = (props) => {
   };
 
   const getSuggestionValue = (hit) => {
-    //  Todo price might be added
     return hit.title;
   };
 

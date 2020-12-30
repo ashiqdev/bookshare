@@ -83,7 +83,7 @@ const Signup = () => {
                 setTempEmail(values.email);
                 signupMutate(values);
                 reset();
-                makeToast("success", "Successfully registered");
+                isSuccess && makeToast("success", "Successfully registered");
               }}
               className="text-green-500"
             >

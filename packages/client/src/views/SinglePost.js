@@ -55,22 +55,6 @@ const SinglePost = (props) => {
 
   const date = new Date(data?.createdAt);
 
-  // const [
-  //   deleteMutate,
-  //   { status: deleteStatus, error: deleteError, data: deleteRes },
-  // ] = useMutation(
-  //   async () => {
-  //     await axios.delete(`${API_URL}/api/posts/${id}`);
-  //   },
-  //   {
-  //     onSuccess: () => {
-  //       console.log("Post has been deleted");
-  //       queryCache.refetchQueries("posts");
-  //       return history.push("/");
-  //     },
-  //   }
-  // );
-
   useEffect(() => {
     if (state.editForm || state.deleteForm) {
       document.body.style.position = "fixed";

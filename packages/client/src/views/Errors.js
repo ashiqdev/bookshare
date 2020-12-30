@@ -10,7 +10,6 @@ const Error = ({ error }) => {
     );
   });
 
-  // return <div className="mb-5 text-center bg-red-500 text-white">{test}</div>;
   return (
     <>
       {Object.entries(error).map(([key, value]) => {

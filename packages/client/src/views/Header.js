@@ -30,7 +30,6 @@ const FetchCurrentUser = async () => {
 const Header = () => {
   const updatedUser = queryCache.getQueryData("user");
   const { state, dispatch } = useContext(store);
-  // console.log({ jamunaNow: state && state });
 
   useQuery("user", FetchCurrentUser);
 

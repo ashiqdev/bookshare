@@ -24,12 +24,11 @@ import DropDownItem from "./DropDownItem";
 const DropDown = () => {
   const updatedUser = queryCache.getQueryData("user");
   const { state, dispatch } = useContext(store);
-  console.log({ test: state.modal });
+
   const node = useRef(null);
   const [activeMenu, setActiveMenu] = useState("main");
 
   const handleClick = (e) => {
-    // console.log(node);
     if (node.current.contains(e.target)) {
       // inside click
       dispatch(OpenBox());
@@ -42,8 +41,6 @@ const DropDown = () => {
     }
     dispatch(CloseBox());
   };
-
-  // const [profileCompleted, setProfileCompleted] = useState(value);
 
   const setMenu = (menu) => setActiveMenu(menu);
 

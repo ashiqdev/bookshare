@@ -1,7 +1,6 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
 import Modal from "react-modal";
 import axios from "axios";
 import { useMutation, queryCache } from "react-query";
@@ -21,7 +20,6 @@ const override = css`
 `;
 
 const EditModal = ({ id, post }) => {
-  console.log({ id, post });
   const { state, dispatch } = useContext(store);
   const [fileInputState, setFileInputState] = useState("");
   const [previewSource, setPreviewSource] = useState([...post.book.images]);
@@ -30,7 +28,6 @@ const EditModal = ({ id, post }) => {
 
   const previewFile = (file) => {
     const reader = new FileReader();
-    console.log({ test: reader.result });
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       setPreviewSource([...previewSource, reader.result]);
@@ -42,14 +39,8 @@ const EditModal = ({ id, post }) => {
     previewFile(file);
   };
 
-  console.log({ previewSource });
-
-  //   if (isLoading) return <p>Loading...</p>;
-
-  console.log({ updatedUser });
-
   const { API_URL } = process.env;
-  const [values, onChangeHandler, reset] = UseForm({
+  const [values, onChangeHandler] = UseForm({
     name: post.book.name,
     writer: post.book.writer,
     title: post.title,
@@ -58,7 +49,7 @@ const EditModal = ({ id, post }) => {
     description: post.description || "",
   });
 
-  const [postMutate, { status, error, data }] = useMutation(
+  const [postMutate, { status, error }] = useMutation(
     async (value) => {
       // eslint-disable-next-line no-param-reassign
 
@@ -72,8 +63,6 @@ const EditModal = ({ id, post }) => {
         queryCache.refetchQueries(["post", id]);
         dispatch(ToggleEditForm());
         makeToast("success", "your ad has been updated");
-        // go to homepage
-        // return history.push("/");
       },
     }
   );
@@ -112,7 +101,6 @@ const EditModal = ({ id, post }) => {
         </div>
       )}
 
-      {/* {status === "success" && dispatch(ToggleModal())} */}
       <form className="w-full max-w-lg" onSubmit={onSubmitHandler}>
         <div className="flex flex-wrap -mx-3 mb-2">
           {/* Book Name */}
@@ -242,30 +230,6 @@ const EditModal = ({ id, post }) => {
               Book Images
             </label>
             <div className="mt-2 flex items-center">
-              {/* <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
-                {previewSource ? (
-                  <img
-                    src={previewSource}
-                    alt="Chosen"
-                    className="h-full w-full text-gray-300"
-                  />
-                ) : updatedUser?.image ? (
-                  <img
-                    src={updatedUser.image}
-                    alt="Chosen"
-                    className="h-full w-full text-gray-300"
-                  />
-                ) : (
-                  <svg
-                    className="h-full w-full text-gray-300"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                )}
-              </span> */}
-              {console.log(previewSource.length)}
               {previewSource.length > 0 &&
                 previewSource.map((image) => (
                   <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100 mr-2">
@@ -277,13 +241,6 @@ const EditModal = ({ id, post }) => {
                   </span>
                 ))}
               <span className="ml-5 rounded-md shadow-sm">
-                {/* <button
-                  type="button"
-                  className="py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
-                >
-                  Change
-                </button> */}
-                {/* <input type="file" name="image" /> */}
                 <label htmlFor="file-input">
                   <img
                     className="w-10 h-10 cursor-pointer"

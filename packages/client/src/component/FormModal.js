@@ -26,8 +26,6 @@ const FormModal = () => {
   const [fileInputState, setFileInputState] = useState("");
   const [previewSource, setPreviewSource] = useState([]);
 
-  const updatedUser = queryCache.getQueryData("user");
-
   const previewFile = (file) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -40,12 +38,6 @@ const FormModal = () => {
     const file = e.target.files[0];
     previewFile(file);
   };
-
-  console.log({ previewSource });
-
-  //   if (isLoading) return <p>Loading...</p>;
-
-  console.log({ updatedUser });
 
   const { API_URL } = process.env;
   const [values, onChangeHandler] = UseForm({

@@ -20,7 +20,7 @@ const override = css`
 
 const ProfileModal = () => {
   const { state, dispatch } = useContext(store);
-  console.log(state);
+
   const [fileInputState, setFileInputState] = useState("");
   const [previewSource, setPreviewSource] = useState("");
 
@@ -38,10 +38,6 @@ const ProfileModal = () => {
     const file = e.target.files[0];
     previewFile(file);
   };
-
-  //   if (isLoading) return <p>Loading...</p>;
-
-  console.log({ updatedUser });
 
   const { API_URL } = process.env;
   const [values, onChangeHandler] = UseForm({

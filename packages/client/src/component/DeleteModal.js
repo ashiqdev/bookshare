@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Modal from "react-modal";
 import axios from "axios";
@@ -20,39 +20,15 @@ const override = css`
 const DeleteModal = ({ id }) => {
   const history = useHistory();
   const { state, dispatch } = useContext(store);
-  const [fileInputState, setFileInputState] = useState("");
-  const [previewSource, setPreviewSource] = useState([]);
-
-  const updatedUser = queryCache.getQueryData("user");
-
-  const previewFile = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setPreviewSource([...previewSource, reader.result]);
-    };
-  };
-
-  const handleFileInputChange = (e) => {
-    const file = e.target.files[0];
-    previewFile(file);
-  };
-
-  console.log({ previewSource });
-
-  //   if (isLoading) return <p>Loading...</p>;
-
-  console.log({ updatedUser });
 
   const { API_URL } = process.env;
 
-  const [deleteMutate, { status, error, data }] = useMutation(
+  const [deleteMutate, { status, error }] = useMutation(
     async () => {
       await axios.delete(`${API_URL}/api/posts/${id}`);
     },
     {
       onSuccess: () => {
-        console.log("Post has been deleted");
         dispatch(ToggleDeleteForm());
         queryCache.refetchQueries("posts");
         return history.push("/");
@@ -67,20 +43,6 @@ const DeleteModal = ({ id }) => {
       className="delete_Modal"
       overlayClassName="Overlay"
     >
-      {/* <div className="flex">
-        <button
-          type="button"
-          className="ml-auto absolute top-0 right-0 p-5 focus:outline-none"
-          onClick={() => dispatch(ToggleDeleteForm())}
-        >
-          <img
-            src={RemoveIcon}
-            alt="Icon"
-            className="focus:outline-none mr-2 sm:mr-0 lg:w-10 w-8 h-8 text-teal-500 hover: fill-current"
-          />
-        </button>
-      </div> */}
-
       {error &&
         error.response.data.errors.map((e, i) => <Errors key={i} error={e} />)}
 
@@ -90,7 +52,6 @@ const DeleteModal = ({ id }) => {
         </div>
       )}
 
-      {/* {status === "success" && dispatch(ToggleModal())} */}
       <div className="w-72 pt-3">
         <h3 className="text-center font-bold text-lg">Delete Post?</h3>
         <p className="text-center text-gray-500  text-sm pt-3 leading-snug">

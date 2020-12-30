@@ -19,9 +19,7 @@ const override = css`
 `;
 
 const ReSignin = ({ location: { message } }) => {
-  const { state, dispatch } = useContext(store);
-
-  console.log({ state });
+  const { dispatch } = useContext(store);
 
   const { API_URL } = process.env;
   const [values, onChangeHandler, reset] = UseForm({

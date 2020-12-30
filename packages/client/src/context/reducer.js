@@ -7,7 +7,6 @@ import {
   TOGGLE_BOX,
   TOGGLE_MODAL,
   USER_LOADED,
-  COMPLETE_PROFILE,
   TOGGLE_SELL_FORM,
   TOGGLE_DELETE_FORM,
   TOGGLE_EDIT_FORM,
@@ -19,11 +18,9 @@ const reducer = (state, action) => {
       localStorage.setItem("token", action.payload.token);
       return { ...state, ...action.payload, isAuthenticated: true, box: false };
     case USER_LOADED:
-      console.log({ ashik: action.payload });
       return { ...state, isAuthenticated: true, user: action.payload };
     case AUTH_ERROR:
     case LOG_OUT:
-      console.log({ error: "error paise" });
       localStorage.removeItem("token");
       return {
         ...state,
@@ -31,7 +28,6 @@ const reducer = (state, action) => {
         isAuthenticated: false,
       };
     case TOGGLE_BOX:
-      console.log("Box triggered");
       return {
         ...state,
         box: !state.box,
@@ -50,7 +46,6 @@ const reducer = (state, action) => {
       };
 
     case TOGGLE_MODAL:
-      console.log({ najir: action.payload });
       if (action.payload) {
         return {
           ...state,
@@ -67,7 +62,6 @@ const reducer = (state, action) => {
       };
 
     case TOGGLE_SELL_FORM:
-      console.log("Toggle Sell form modal");
       return {
         ...state,
         sellForm: !state.sellForm,
