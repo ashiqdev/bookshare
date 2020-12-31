@@ -50,6 +50,7 @@ A platform where you can buy/sell used or unused books
 - [x] image upload system using cloudinary
 - [x] sort books by different criterias
 - [x] image upload system using cloudinary
+- [x] infinity scroll
 - [x] Fetch, cache and update data without touching any "global state".
 - [ ] chat with seller
 
