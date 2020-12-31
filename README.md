@@ -8,7 +8,7 @@
 
 A platform where you can buy/sell used or unused books
 
-<a href="https://github.com/ashiqdev/bookshare/fork target="blank">
+<a href="https://github.com/ashiqdev/bookshare/fork" target="blank">
 <img src="https://img.shields.io/github/forks/ashiqdev/bookshare?style=for-the-badge" alt="sharebook forks"/>
 </a>
 
@@ -16,7 +16,7 @@ A platform where you can buy/sell used or unused books
 <img src="https://img.shields.io/github/stars/ashiqdev/bookshare?style=for-the-badge" alt="sharebook stars"/>
 </a>
 
-<a href="https://github.com/ashiqdev/bookshare/issues target="blank">
+<a href="https://github.com/ashiqdev/bookshare/issues" target="blank">
 <img src="https://img.shields.io/github/issues/ashiqdev/bookshare?style=for-the-badge" alt="sharebook issues"/>
 </a>
 
