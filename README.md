@@ -130,7 +130,7 @@ dotenv -e .env yarn dev:client
 dotenv -e .env yarn test:services
 ```
 
-11. For Api Documentation open http://localhost:7777/api-docs/ (you can also send http request from here)
+12. For Api Documentation open http://localhost:7777/api-docs/ (you can also send http request from here)
 
 You are all set!
 
