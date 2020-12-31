@@ -39,7 +39,7 @@ A platform where you can buy/sell used or unused books
 
 ## Sharebook is a platform project which ensures easier communtication between seller and buyer!
 
-## Feature list
+## 🧐 Feature list
 
 - [x] Register a user
 - [x] verify email address
@@ -52,7 +52,7 @@ A platform where you can buy/sell used or unused books
 - [x] Fetch, cache and update data without touching any "global state".
 - [ ] chat with seller
 
-## Getting started
+## 🚀 Getting started
 
 This project is deployed at https://share-book-client.herokuapp.com
 
@@ -132,7 +132,7 @@ dotenv -e .env yarn test:services
 
 You are all set!
 
-## Special Thanks
+## 🙇 Special Thanks
 
 - [somikdatta](https://github.com/somikdatta/) for this cool readme template
 
