@@ -31,7 +31,7 @@ A platform where you can buy/sell used or unused books
 
 ✨ _Loved the project? Give this project a star to show your support._ ✨
 
-<img src="./demo.gif" style="width: 80%"/>
+<img src="./packages/client/src/assets/images/final.gif" style="width: 80%"/>
 
 </div>
 
