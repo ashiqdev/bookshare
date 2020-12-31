@@ -37,7 +37,7 @@ A platform where you can buy/sell used or unused books
 
 ---
 
-## Cuckoo is a platform project which ensures easier communtication between seller and buyer!
+## Sharebook is a platform project which ensures easier communtication between seller and buyer!
 
 ## Feature list
 
