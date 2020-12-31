@@ -45,6 +45,7 @@ A platform where you can buy/sell used or unused books
 - [x] verify email address
 - [x] resend verification mail
 - [x] forget password
+- [x] social login
 - [x] Autocomplete search using algolia
 - [x] image upload system using cloudinary
 - [x] sort books by different criterias
