@@ -4,7 +4,7 @@
   <img alt="ShareBook" src="./packages/client/src/assets/images/boilogo.png" />
 </a>
 
-# ShareBook - Buy or sell books
+# ShareBook - Buy or Sell books
 
 A platform where you can buy/sell used or unused books
 
