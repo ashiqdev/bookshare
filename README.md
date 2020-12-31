@@ -1,33 +1,33 @@
 <div align="center">
   
 <a href="https://share-book-client.herokuapp.com"/>
-  <img alt="Cuckoo" src="./packages/client/src/assets/images/boilogo.png" />
+  <img alt="ShareBook" src="./packages/client/src/assets/images/boilogo.png" />
 </a>
 
-# Cuckoo - Anonymous, Free Video Calls
+# ShareBook - Buy or sell books
 
-Anonymous video calls across the world for free with screensharing!
+A platform where you can buy/sell used or unused books
 
-<a href="https://github.com/somikdatta/cuckoo/fork" target="blank">
-<img src="https://img.shields.io/github/forks/somikdatta/cuckoo?style=for-the-badge" alt="cuckoo forks"/>
+<a href="https://github.com/ashiqdev/bookshare/fork target="blank">
+<img src="https://img.shields.io/github/forks/ashiqdev/bookshare?style=for-the-badge" alt="sharebook forks"/>
 </a>
 
-<a href="https://github.com/somikdatta/cuckoo/stargazers" target="blank">
-<img src="https://img.shields.io/github/stars/somikdatta/cuckoo?style=for-the-badge" alt="cuckoo stars"/>
+<a href="https://github.com/ashiqdev/bookshare/stargazers" target="blank">
+<img src="https://img.shields.io/github/stars/ashiqdev/bookshare?style=for-the-badge" alt="sharebook stars"/>
 </a>
 
-<a href="https://github.com/somikdatta/cuckoo/issues" target="blank">
-<img src="https://img.shields.io/github/issues/somikdatta/cuckoo?style=for-the-badge" alt="cuckoo issues"/>
+<a href="https://github.com/ashiqdev/bookshare/issues target="blank">
+<img src="https://img.shields.io/github/issues/ashiqdev/bookshare?style=for-the-badge" alt="sharebook issues"/>
 </a>
 
-<a href="https://github.com/somikdatta/cuckoo/pulls" target="blank">
-<img src="https://img.shields.io/github/issues-pr/somikdatta/cuckoo?style=for-the-badge" alt="cuckoo pull-requests"/>
+<a href="https://github.com/ashiqdev/bookshare/pulls" target="blank">
+<img src="https://img.shields.io/github/issues-pr/ashiqdev/bookshare?style=for-the-badge" alt="sharebook pull-requests"/>
 </a>
 
 <br/>
 <br/>
 
-<a href="https://cuckooapp.herokuapp.com/" target="_blank">View Cuckoo</a> · <a href="https://github.com/somikdatta/cuckoo/issues/new/choose" target="_blank">Report Bug</a> · <a href="https://github.com/somikdatta/cuckoo/issues/new/choose" target="_blank">Request Feature</a>
+<a href="https://share-book-client.herokuapp.com" target="_blank">View ShareBook</a> · <a href="https://github.com/ashiqdev/bookshare/issues/new/choose" target="_blank">Report Bug</a> · <a href="https://github.com/ashiqdev/bookshare/issues/new/choose" target="_blank">Request Feature</a>
 
 ✨ _Loved the project? Give this project a star to show your support._ ✨
 
@@ -37,77 +37,113 @@ Anonymous video calls across the world for free with screensharing!
 
 ---
 
-## Cuckoo is a small project to demonstrate the concepts of WebRTC, WebSockets by facilitating video calls across the web!
+## Cuckoo is a platform project which ensures easier communtication between seller and buyer!
 
-## 🧐 Feature list
+## Feature list
 
-- [x] Video Call
-- [x] Screen Sharing
-- [ ] Select camera
-- [ ] Select audio device
+- [x] Register a user
+- [x] verify email address
+- [x] resend verification mail
+- [x] forget password
+- [x] Autocomplete search using algolia
+- [x] image upload system using cloudinary
+- [x] sort books by different criterias
+- [x] image upload system using cloudinary
+- [x] Fetch, cache and update data without touching any "global state".
+- [ ] chat with seller
 
-## 🚀 Getting started
+## Getting started
 
-This project is deployed at https://cuckooapp.herokuapp.com
+This project is deployed at https://share-book-client.herokuapp.com
 
 Guide for local deployment -
 
 1. Clone the repository
 
 ```bash
-git clone https://github.com/somikdatta/cuckoo.git
+git clone git@github.com:ashiqdev/bookshare.git
 ```
 
 2. Change the working directory
 
 ```bash
-cd cuckoo
+cd bookshare
 ```
 
 3. Install dependencies
 
 ```bash
-npm install
+yarn
 ```
 
-4. Change the working directory
+4. Update .env file
 
 ```bash
-cd client
+cp example.env .env
 ```
 
-5. Install dependencies
+5. Install maildev for testing mail related services
 
 ```bash
-yarn install
+npm i -g maildev
 ```
 
-6. Run the app
+6. Run maildev in one of the instance of your terminal
 
 ```bash
-npm start in parent directory /cuckoo
+maildev --incoming-user=test --incoming-pass=test
+```
+
+7. Run docker (install docker and docker-compose if you don't have those!)
+
+```bash
+npm i -g dotenv-cli
 ```
 
 ```bash
-yarn start in directory /cuckoo/client
+ENV_FILE=.env docker-compose -f docker-compose-dev.yml up --build
 ```
 
-7. Open project at http://localhost:3000
+8. Run backend server
 
-🌟 You are all set!
+```bash
+dotenv -e .env yarn build:watch
+```
 
-## 🙇 Special Thanks
+```bash
+dotenv -e .env yarn dev:server
+```
 
-- [Coding with Chaim](https://github.com/coding-with-chaim/) for explaining the concepts of WebSockets and WebRTC on his [YouTube Channel](https://www.youtube.com/channel/UC7sCgeZ9xOwCGHIp2mVWlUQ)
+9. Run frontend
+
+```bash
+dotenv -e .env yarn dev:client
+```
+
+10. Open project at http://localhost:1234
+
+11. Run integration test
+
+```bash
+dotenv -e .env yarn test:services
+```
+
+11. For Api Documentation open http://localhost:7777/api-docs/ (you can also send http request from here)
+
+You are all set!
+
+## Special Thanks
+
+- [somikdatta](https://github.com/somikdatta/) for this cool readme template
 
 ## ❤️ Support
 
-If you happen to love this project, leave a star on the repo. That'll keep me motivated. Let me know your thoughts with a tweet. Mention me [@somikdatta](https://twitter.com/somikdatta).
+If you happen to love this project, leave a star on the repo. That'll keep me motivated. Let me know your thoughts with a tweet. Mention me [@ashikduit](https://twitter.com/ashikduit).
 
 Thanks!
 
 Contributions are welcomed!
 
 <div align="center">
-Developed with ❤️ in India 🇮🇳 
+Developed with ❤️ in Bangladesh
 </div>
